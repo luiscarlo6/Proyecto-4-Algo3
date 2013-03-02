@@ -115,10 +115,6 @@ public class DiGraphHash implements Graph {
 					this.numArcos++;
 					return true;
 				}
-				if (Cambiar(Aux, a)) {
-					this.numArcos++;
-					return true;
-				}
 				return false;
 			}
 		}
@@ -720,24 +716,4 @@ public class DiGraphHash implements Graph {
 		}
 		return out;
 	}
-
-
-	/**
-	 * Si el costo de Nuevo es menor que el del actual
-	 * se reemplaza el costo y el nombre del arcoo
-	 * @param Actual arco actual
-	 * @param Nuevo arco nuevo
-	 * @return true si se intercambiaron
-	 *
-	 * */
-	private static boolean Cambiar(Arco Actual, Arco Nuevo) {
-
-		if (Actual.getPeso() > Nuevo.getPeso()) {
-			Actual.setPeso(Actual.getPeso());
-
-			return true;
-		}
-		return false;
-	}
-
 }// fin de DiGraphHash
