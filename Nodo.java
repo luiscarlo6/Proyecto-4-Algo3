@@ -29,6 +29,7 @@ public class Nodo implements Comparable<Nodo> {
 	 */
 	public Nodo(String i) {
 		this.id = new String(i);
+		this.peso = Integer.MAX_VALUE;
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class Nodo implements Comparable<Nodo> {
 	@Override
 	public String toString() {
 
-		return new String(new String(this.id));
+		return new String(new String(this.id +"\t"+ this.peso));
 	}
 
 	/**
