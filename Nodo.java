@@ -14,6 +14,8 @@ public class Nodo implements Comparable<Nodo> {
 	private boolean visitado = false;
 	private int inArcos = 0;
 	private int outArcos = 0;
+	private int PosF=-1;
+	private int PosC=-1;
 
 	/**
 	 * Constructor por defecto
@@ -21,6 +23,8 @@ public class Nodo implements Comparable<Nodo> {
 	public Nodo() {
 		this.id = "";
 		this.peso = Integer.MAX_VALUE;
+		this.PosC=-1;
+		this.PosF=-1;
 	}
 
 	/**
@@ -30,6 +34,8 @@ public class Nodo implements Comparable<Nodo> {
 	public Nodo(String i) {
 		this.id = new String(i);
 		this.peso = Integer.MAX_VALUE;
+		this.PosC=-1;
+		this.PosF=-1;
 	}
 
 	/**
@@ -40,6 +46,8 @@ public class Nodo implements Comparable<Nodo> {
 	public Nodo(String i, int p) {
 		this.id = new String(i);
 		this.peso = p;
+		this.PosC=-1;
+		this.PosF=-1;
 	}
 
 	/**
@@ -57,7 +65,7 @@ public class Nodo implements Comparable<Nodo> {
 	@Override
 	public String toString() {
 
-		return new String(new String(this.id +"\t"+ this.peso));
+		return new String(new String(this.id +"\t"+ this.peso + "\t" + this.PosF + "\t" + this.PosC));
 	}
 
 	/**
@@ -153,6 +161,24 @@ public class Nodo implements Comparable<Nodo> {
 			return -1;
 		}
 		return 1;
+	}
+	
+	
+	
+	public int getPosF(){
+		return this.PosF;
+	}
+	
+	public void setPosF(int a){
+		this.PosF=a;
+	}
+	
+	public int getPosC(){
+		return this.PosC;
+	}
+	
+	public void setPosC(int a){
+		this.PosC=a;
 	}
 
 } /*Fin de nodo*/

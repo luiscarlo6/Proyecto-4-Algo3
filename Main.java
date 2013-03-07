@@ -41,6 +41,7 @@ public class Main {
 
 			} else {
 				System.out.println("Error en la linea de argumentos");
+				System.exit(0);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Error el archivo no existe");
@@ -53,7 +54,7 @@ public class Main {
 	private static Graph Llenar(Scanner s, int Fila, int Columna) {
 
 		Graph G = null;
-		
+
 		G = new DiGraphHash();
 		int N1 = 0;
 		int N2 = 0;
@@ -105,12 +106,13 @@ public class Main {
 					Array[2] += N5;
 					N5++;
 				}
-				Arg = s.next();
+				if (s.hasNext())
+					Arg = s.next();
 				ID = new String(Array);
-				ID = ID+""+(j+1);
-				
-				Procesar(G, ID, Arg);
-				//System.out.println(new String(ID + "\t" + Arg));
+				ID = ID + "" + (j + 1);
+
+				Procesar(G, ID, Arg, j, i);
+				// System.out.println(new String(ID + "\t" + Arg));
 			}// fin de for de i
 
 		}// fin de for de j
@@ -119,50 +121,58 @@ public class Main {
 		return G;
 
 	}
-	
-	
-	private static void Procesar(Graph G, String Nombre, String Cont){
-		
-		Nodo Nuevo=null;
-		String[] Formula=null;
-		String Aux=null;
+
+	private static void Procesar(Graph G, String Nombre, String Cont, int PosF,
+			int PosC) {
+
+		Nodo Nuevo = null;
+		String[] Formula = null;
+		String Aux = null;
 		Nodo nodo;
-		
-		if(Cont.contains("=")){
-			
+
+		if (Cont.length() == 0)
+			return;
+
+		if (Cont.contains("=")) {
+
 			Aux = Cont.substring(1);
-			
+
 			Formula = Aux.split("\\+");
-			
-			G.add(new Nodo(Nombre));
-			
-			for(int i=0;i!=Formula.length;i++){
+
+			Nuevo = new Nodo(Nombre);
+			Nuevo.setPosF(PosF);
+			Nuevo.setPosC(PosC);
+
+			G.add(Nuevo);
+
+			for (int i = 0; i != Formula.length; i++) {
 				G.add(new Nodo(Formula[i]));
-				G.add(new Arco(Nombre,Formula[i]));
+				G.add(new Arco(Nombre, Formula[i]));
 			}
 			return;
-			
+
 		}
-		
+
 		nodo = G.get(new Nodo(Nombre));
-		
-		if (nodo!=null){
-			
-			if (nodo.getPeso()==Integer.MAX_VALUE){
+
+		if (nodo != null) {
+
+			if (nodo.getPeso() == Integer.MAX_VALUE) {
 				nodo.setPeso(Integer.parseInt(Cont));
+				nodo.setPosF(PosF);
+				nodo.setPosC(PosC);
 			}
 			return;
-			
+
 		}
-		
-		
-		Nuevo = new Nodo(Nombre,Integer.parseInt(Cont));
-		
+
+		Nuevo = new Nodo(Nombre, Integer.parseInt(Cont));
+		Nuevo.setPosF(PosF);
+		Nuevo.setPosC(PosC);
+
 		G.add(Nuevo);
-		
-		
-		
-	} 
+
+	}
 
 }// fin de clase Main
 
