@@ -17,6 +17,9 @@ public class Main {
 		int Filas = -1;
 		int Columnas = -1;
 
+		// Object[] ListaNodo=null;
+		Lista<Nodo> Lista;
+
 		try {
 			if (args.length == 2) {
 				archivoIn = new File(args[0]);
@@ -36,6 +39,19 @@ public class Main {
 					grafo = Llenar(s, Filas, Columnas);
 					System.out.println(grafo.toString());
 					System.out.println("\n\n\n\n");
+
+					Lista = grafo.getNodos();
+					ListIterator<Nodo> Rec = ((MiLista<Nodo>) Lista).iterator();
+
+					for (int u = 0; u != Lista.getSize(); u++) {
+						int[] Pos = null;
+						Nodo nodo = Rec.next();
+
+						Pos = PosicionMatriz(nodo.getId());
+						System.out.println(nodo.getId() + "\t" + Pos[1] + "\t"
+								+ Pos[0]);
+					}
+
 					i++;
 				}
 
@@ -51,6 +67,7 @@ public class Main {
 		}
 	}
 
+	// funcion que llena la matriz
 	private static Graph Llenar(Scanner s, int Fila, int Columna) {
 
 		Graph G = null;
@@ -111,7 +128,7 @@ public class Main {
 				ID = new String(Array);
 				ID = ID + "" + (j + 1);
 
-				Procesar(G, ID, Arg, j, i);
+				Procesar(G, ID, Arg);
 				// System.out.println(new String(ID + "\t" + Arg));
 			}// fin de for de i
 
@@ -122,8 +139,11 @@ public class Main {
 
 	}
 
-	private static void Procesar(Graph G, String Nombre, String Cont, int PosF,
-			int PosC) {
+	/**
+	 * Toma el string Cont y descifra si es un numero o una formula
+	 * 
+	 * */
+	private static void Procesar(Graph G, String Nombre, String Cont) {
 
 		Nodo Nuevo = null;
 		String[] Formula = null;
@@ -140,8 +160,6 @@ public class Main {
 			Formula = Aux.split("\\+");
 
 			Nuevo = new Nodo(Nombre);
-			Nuevo.setPosF(PosF);
-			Nuevo.setPosC(PosC);
 
 			G.add(Nuevo);
 
@@ -159,18 +177,63 @@ public class Main {
 
 			if (nodo.getPeso() == Integer.MAX_VALUE) {
 				nodo.setPeso(Integer.parseInt(Cont));
-				nodo.setPosF(PosF);
-				nodo.setPosC(PosC);
+
 			}
 			return;
 
 		}
 
 		Nuevo = new Nodo(Nombre, Integer.parseInt(Cont));
-		Nuevo.setPosF(PosF);
-		Nuevo.setPosC(PosC);
 
 		G.add(Nuevo);
+
+	}
+
+	/**
+	 * 
+	 * Funcion que dado el el id del nodo, retorna la posicion que le
+	 * corresponde en la matriz
+	 * 
+	 * */
+
+	// Pos[0] son las columnas Pos[1] son las filas
+	private static int[] PosicionMatriz(String Arg) {
+		int[] Pos = new int[2];
+		Pos[0] = -1;
+		Pos[1] = -1;
+		final char Const = 'A';
+		final char Const1 = '0';
+
+		char[] Aux = null;
+
+		// System.out.println(Arg.length());
+		switch (Arg.length()) {
+		case 2:
+			Aux = Arg.toCharArray();
+			Pos[0] = Aux[0] - Const;
+			Pos[1] = Aux[1] - Const1 - 1;
+			break;
+
+		case 3:
+			Aux = Arg.toCharArray();
+			Pos[0] = (Aux[0] - Const) * 26 + (Aux[1] - Const) + 26;
+			Pos[1] = Aux[2] - Const1 - 1;
+			break;
+
+		case 4:
+			Aux = Arg.toCharArray();
+			Pos[0] = (Aux[0] - Const) * 676 + (Aux[1] - Const) * 26
+					+ (Aux[2] - Const) + 702;
+			Pos[1] = Aux[3] - Const1 - 1;
+			break;
+
+		default:
+			break;
+		}
+
+		// System.out.println(Pos[1]);
+		// System.out.println(Pos[0]);
+		return Pos;
 
 	}
 
