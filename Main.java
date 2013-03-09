@@ -34,7 +34,12 @@ public class Main {
 						Columnas = s.nextInt();
 					if (s.hasNextInt())
 						Filas = s.nextInt();
-
+					
+					if(1<=Filas && Filas<=99 && 1<=Columnas && Columnas<=18278){
+						System.out.println("\n\n El archivo no respeta el formato indicado \n\n");
+						System.exit(1);
+					}
+					
 					grafo = Llenar(s, Filas, Columnas);
 
 					pila = topo.TopoSort(grafo);
@@ -72,6 +77,11 @@ public class Main {
 
 		Graph G = null;
 
+		if(1<=Fila && Fila<=99 && 1<=Columna && Columna<=18278){
+			System.out.println("\n\n El archivo no respeta el formato indicado \n\n");
+			System.exit(1);
+		}
+		
 		G = new DiGraphHash();
 		int N1 = 0;
 		int N2 = 0;
