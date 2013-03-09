@@ -19,7 +19,7 @@ public class Main {
 
 		try {
 			if (args.length == 2) {
-				Topologico topo = new Topologico(); 
+				Topologico topo = new Topologico();
 				Pila<Nodo> pila;
 
 				archivoOut = new FileWriter(args[1]);
@@ -39,11 +39,11 @@ public class Main {
 
 					pila = topo.TopoSort(grafo);
 
-					int matriz[][] = matriz(grafo,pila,Filas,Columnas);
+					int matriz[][] = matriz(grafo, pila, Filas, Columnas);
 
-					for (int f = 0; f!=matriz.length;f++){
+					for (int f = 0; f != matriz.length; f++) {
 
-						for (int c = 0; c!=matriz[f].length;c++){
+						for (int c = 0; c != matriz[f].length; c++) {
 							pw.print(matriz[f][c]);
 							pw.print(" ");
 						}
@@ -200,53 +200,77 @@ public class Main {
 		Pos[0] = -1;
 		Pos[1] = -1;
 		final char Const = 'A';
-		final char Const1 = '0';
+		// final char Const1 = '0';
+		int j = -1;
+		String Letras = "";
+		String Numeros = "";
+		
+		//se busca la posicion donde aparece un numero por primera vez
+		for (int i = 0; i != Arg.length(); i++) {
+			int Num = Arg.charAt(i);
+			if (!(65 <= Num && Num <= 90)) {
+				j = i;
+				// System.out.println("HOLAAA");
+				// System.out.println(j);
+				break;
+			}
+		}
+
+		//copio el substring de las letras
+		Letras = Arg.substring(0, j);
+		//copio el substring de los numeros
+		Numeros = Arg.substring(j, Arg.length());
 
 		char[] Aux = null;
 
 		// System.out.println(Arg.length());
-		switch (Arg.length()) {
-		case 2:
-			Aux = Arg.toCharArray();
+		//evaluo en que caso estoy
+		switch (Letras.length()) {
+		case 1:
+			Aux = Letras.toCharArray();
 			Pos[0] = Aux[0] - Const;
-			Pos[1] = Aux[1] - Const1 - 1;
+			// Pos[1] = Aux[1] - Const1 - 1;
+			break;
+
+		case 2:
+			Aux = Letras.toCharArray();
+			Pos[0] = (Aux[0] - Const) * 26 + (Aux[1] - Const) + 26;
+			// Pos[1] = Aux[2] - Const1 - 1;
 			break;
 
 		case 3:
-			Aux = Arg.toCharArray();
-			Pos[0] = (Aux[0] - Const) * 26 + (Aux[1] - Const) + 26;
-			Pos[1] = Aux[2] - Const1 - 1;
-			break;
-
-		case 4:
-			Aux = Arg.toCharArray();
+			Aux = Letras.toCharArray();
 			Pos[0] = (Aux[0] - Const) * 676 + (Aux[1] - Const) * 26
 					+ (Aux[2] - Const) + 702;
-			Pos[1] = Aux[3] - Const1 - 1;
-			break;
-
-		default:
+			// Pos[1] = Aux[3] - Const1 - 1;
 			break;
 		}
+
+		//se le resta uno para que cuadre en la matriz
+		Pos[1] = Integer.parseInt(Numeros) - 1;
+
 		return Pos;
 
 	}
 
-	private static int[][] matriz(Graph grafo, Pila<Nodo> pila, int filas, int columnas){
+	private static int[][] matriz(Graph grafo, Pila<Nodo> pila, int filas,
+			int columnas) {
 		int matriz[][] = new int[filas][columnas];
 
-		while (!pila.esVacia()){
+		System.out.println(grafo.toString());
+
+		while (!pila.esVacia()) {
 			Nodo n = pila.primero();
 			pila.desempilar();
 
-			if (n.getPeso()==Integer.MAX_VALUE){
+			if (n.getPeso() == Integer.MAX_VALUE) {
 
-				MiLista<Nodo> ady =(MiLista<Nodo>) grafo.getSuc(n);			
+				MiLista<Nodo> ady = (MiLista<Nodo>) grafo.getSuc(n);
 				ListIterator<Nodo> it = ady.iterator();
 
 				int j = 0;
 				int peso = 0;
-				while (j!=ady.getSize()){
+				while (j != ady.getSize()) {
 					Nodo a = it.next();
 					a = grafo.get(a);
 					peso = peso + a.getPeso();
@@ -256,9 +280,12 @@ public class Main {
 			}
 
 			int pos[] = PosicionMatriz(n.getId());
+//			System.out.println(pos[1]);
+//			System.out.println(pos[0]);
+//			System.out.println("\n\n");
+
 			matriz[pos[1]][pos[0]] = n.getPeso();
 		}
-
 
 		return matriz;
 	}
