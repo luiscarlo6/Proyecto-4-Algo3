@@ -1,10 +1,11 @@
 /**
  * Clase que implementa un heap binario
+ * 
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
- *
- * Proyecto 3
- * Prof Lab: Juan Arocha
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
  * @param <E> Tipo de objetos que guardara el arreglo
  */

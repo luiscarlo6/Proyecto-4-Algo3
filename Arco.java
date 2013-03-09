@@ -1,11 +1,12 @@
 /**
- * 
  * Clase que almacena la informacion de las aristas en el grafo.
+ * 
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
- * Proyecto 3
- * Prof Lab: Juan Arocha
  **/
 public class Arco {
 

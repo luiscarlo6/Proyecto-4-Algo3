@@ -1,11 +1,12 @@
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
- *
+ * 
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
- * Proyecto 3
- * Prof Lab: Juan Arocha
  */
 public class Nodo implements Comparable<Nodo> {
 
@@ -30,7 +31,7 @@ public class Nodo implements Comparable<Nodo> {
 	public Nodo(String i) {
 		this.id = new String(i);
 		this.peso = Integer.MAX_VALUE;
-		
+
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class Nodo implements Comparable<Nodo> {
 	public Nodo(String i, int p) {
 		this.id = new String(i);
 		this.peso = p;
-		
+
 	}
 
 	/**
@@ -61,7 +62,6 @@ public class Nodo implements Comparable<Nodo> {
 	 */
 	@Override
 	public String toString() {
-
 		return new String(new String(this.id));
 	}
 
@@ -121,22 +121,34 @@ public class Nodo implements Comparable<Nodo> {
 
 		this.peso = a;
 	}
-	
 
+
+	/**
+	 * @return el numero de arcos entrando al nodo
+	 */
 	public int getInDegree() {
 		return this.inArcos;
 	}
 
 
+	/**
+	 * @param a Numero de arcos entrando al nodo
+	 */
 	public void setInDegree(int a) {
 		this.inArcos = a;
 	}
-	
+
+	/**
+	 * @return numero de arcos saliendo del nodo
+	 */
 	public int getOutDegree() {
 		return this.outArcos;
 	}
 
 
+	/**
+	 * @param a numero de arcos saliendo del nodo
+	 */
 	public void setOutDegree(int a) {
 		this.outArcos = a;
 	}
@@ -159,11 +171,4 @@ public class Nodo implements Comparable<Nodo> {
 		}
 		return 1;
 	}
-	
-	
-	
-	public String getId(){
-		return (new String(this.id)); 
-	}
-
 } /*Fin de nodo*/

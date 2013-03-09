@@ -1,13 +1,13 @@
 
 /**
  * Clase que implementa la interfaz Lista
- * Esta es una clase parametrizada con tipo (clase) E; i.e., la
- * lista contiene elementos de tipo E.
+ * 
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
- * Proyecto 3
- * Prof Lab: Juan Arocha
  * @param <E> Tipo de elemento a guardar en la lista
  */
 public class MiLista<E> implements Lista<E> {
@@ -140,6 +140,10 @@ public class MiLista<E> implements Lista<E> {
 		return this.centinela.cajaSig().elemento();
 	}
 
+
+	/**
+	 *@return el ultimo elemento de la lista 
+	 */
 	@Override
 	public E getLast(){
 		if (this == null) {
@@ -147,7 +151,7 @@ public class MiLista<E> implements Lista<E> {
 		}
 		return this.centinela.cajaAnt().elemento();
 	}
-	
+
 	/**
 	 * Determina si la lista es vacia.
 	 */

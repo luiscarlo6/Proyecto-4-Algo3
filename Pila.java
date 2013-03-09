@@ -1,10 +1,14 @@
 
 /**
- * Clase que implementa el TAD Cola
- * sLuiscarlo Rivera, 09-11020
+ * Clase que implementa el TAD Pila
+ * 
+ * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
  * 
- * Proyecto 2
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
+ *
+ * @param <E> Tipo de elemento que contendra la pila
  */
 public class Pila<E> {
 
@@ -18,14 +22,16 @@ public class Pila<E> {
 	}
 
 	/**
-	 * dice si la cola es vacia
+	 * @return true si la pila no tiene elementos 
 	 */
 	public boolean esVacia() {
 		return this.lista.getSize() == 0;
 	}
 
 	/**
-	 * Encola el elemento e
+	 * Empila el elemento e
+	 * @param e elemento a empilar
+	 * @return true si empilo el elemento 
 	 */
 	public boolean empilar(E e) {
 		return this.lista.add(e);
@@ -33,21 +39,23 @@ public class Pila<E> {
 
 	/**
 	 * desencola el primer elemento
+	 * @return el elemento desempilado
 	 */
-	public boolean desempilar() {
+	public E desempilar() {
 		E e = this.lista.getLast();
-		return this.lista.remove(e);
+		this.lista.remove(e);
+		return e;
 	}
 
 	/**
-	 * retorna el primer elemento de la cola
+	 * @return el primero de lapila
 	 */
 	public E primero() {
 		return this.lista.getLast();
 	}
 
 	/**
-	 * retorna el numero de elementos en la cola 
+	 * @return numero de elementos en la cola  
 	 */
 	public int tam() {
 		return this.lista.getSize();

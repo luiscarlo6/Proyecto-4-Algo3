@@ -1,10 +1,18 @@
 import java.io.*;
 import java.util.*;
-
+/**
+ * Clase Main para la solucion del proyecto 4
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
+ *
+ */
 public class Main {
 
 	/**
-	 * @param args
+	 * @param args Comandos de entrada
 	 */
 	public static void main(String args[]) {
 
@@ -19,7 +27,6 @@ public class Main {
 
 		try {
 			if (args.length == 2) {
-				Topologico topo = new Topologico();
 				Pila<Nodo> pila;
 
 				archivoOut = new FileWriter(args[1]);
@@ -34,15 +41,16 @@ public class Main {
 						Columnas = s.nextInt();
 					if (s.hasNextInt())
 						Filas = s.nextInt();
-					
-					if(1<=Filas && Filas<=99 && 1<=Columnas && Columnas<=18278){
-						System.out.println("\n\n El archivo no respeta el formato indicado \n\n");
+					if(!(1<=Filas && Filas<=99 && 1<=Columnas && Columnas<=18278)){
+						System.out.println("El archivo no respeta el formato indicado");
 						System.exit(1);
 					}
-					
+
 					grafo = Llenar(s, Filas, Columnas);
 
-					pila = topo.TopoSort(grafo);
+					Topologico topo = new Topologico(grafo);
+
+					pila = topo.TopoSort();
 
 					int matriz[][] = matriz(grafo, pila, Filas, Columnas);
 
@@ -56,10 +64,9 @@ public class Main {
 					}
 					i++;
 				}
-				pw.close();
 				s.close();
 				archivoOut.close();
-
+				pw.close();
 			} else {
 				System.out.println("Error en la linea de argumentos");
 				System.exit(0);
@@ -77,11 +84,6 @@ public class Main {
 
 		Graph G = null;
 
-		if(1<=Fila && Fila<=99 && 1<=Columna && Columna<=18278){
-			System.out.println("\n\n El archivo no respeta el formato indicado \n\n");
-			System.exit(1);
-		}
-		
 		G = new DiGraphHash();
 		int N1 = 0;
 		int N2 = 0;
@@ -214,14 +216,12 @@ public class Main {
 		int j = -1;
 		String Letras = "";
 		String Numeros = "";
-		
+
 		//se busca la posicion donde aparece un numero por primera vez
 		for (int i = 0; i != Arg.length(); i++) {
 			int Num = Arg.charAt(i);
 			if (!(65 <= Num && Num <= 90)) {
 				j = i;
-				// System.out.println("HOLAAA");
-				// System.out.println(j);
 				break;
 			}
 		}
@@ -233,26 +233,24 @@ public class Main {
 
 		char[] Aux = null;
 
-		// System.out.println(Arg.length());
 		//evaluo en que caso estoy
 		switch (Letras.length()) {
 		case 1:
 			Aux = Letras.toCharArray();
 			Pos[0] = Aux[0] - Const;
-			// Pos[1] = Aux[1] - Const1 - 1;
 			break;
 
 		case 2:
 			Aux = Letras.toCharArray();
 			Pos[0] = (Aux[0] - Const) * 26 + (Aux[1] - Const) + 26;
-			// Pos[1] = Aux[2] - Const1 - 1;
 			break;
 
 		case 3:
 			Aux = Letras.toCharArray();
 			Pos[0] = (Aux[0] - Const) * 676 + (Aux[1] - Const) * 26
 					+ (Aux[2] - Const) + 702;
-			// Pos[1] = Aux[3] - Const1 - 1;
+			break;
+		default:
 			break;
 		}
 
@@ -266,8 +264,6 @@ public class Main {
 	private static int[][] matriz(Graph grafo, Pila<Nodo> pila, int filas,
 			int columnas) {
 		int matriz[][] = new int[filas][columnas];
-
-		System.out.println(grafo.toString());
 
 		while (!pila.esVacia()) {
 			Nodo n = pila.primero();
@@ -289,10 +285,7 @@ public class Main {
 				n.setPeso(peso);
 			}
 
-			int pos[] = PosicionMatriz(n.getId());
-//			System.out.println(pos[1]);
-//			System.out.println(pos[0]);
-//			System.out.println("\n\n");
+			int pos[] = PosicionMatriz(n.toString());
 
 			matriz[pos[1]][pos[0]] = n.getPeso();
 		}

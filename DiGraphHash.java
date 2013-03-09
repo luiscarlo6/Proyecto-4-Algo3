@@ -1,11 +1,15 @@
-
 /**
  * Clase que implementa la interfaz Graph para un grafo dirigido con tablas de
  * hash.
- *	 Autores : Luiscarlo Rivera, 09-11020 Jose Prado, 09-11006
+ * 
+ * Luiscarlo Rivera, 09-11020
+ * Jose Prado, 09-11006
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
- * Proyecto 3
- * Prof Lab Juan arocha
+ * Proyecto 4
+ * Prof Lab: Juan Arocha
  */
 public class DiGraphHash implements Graph {
 
@@ -78,7 +82,7 @@ public class DiGraphHash implements Graph {
 		Nodo dst = new Nodo(a.getDst());
 		int posSrc = this.pos(src);
 		int posDst = this.pos(dst);
-//		Arco Aux = null;
+		//		Arco Aux = null;
 
 		if (posSrc == -1 || posDst == -1) {
 			return false;
@@ -111,14 +115,14 @@ public class DiGraphHash implements Graph {
 					this.numArcos++;
 					return true;
 				}
-//				Aux = this.get(a);
-//
-//				if (Aux == null) {
-//					out.add(a);
-//					in.add(a);
-//					this.numArcos++;
-//					return true;
-//				}
+				//				Aux = this.get(a);
+				//
+				//				if (Aux == null) {
+				//					out.add(a);
+				//					in.add(a);
+				//					this.numArcos++;
+				//					return true;
+				//				}
 				return false;
 			}
 		}

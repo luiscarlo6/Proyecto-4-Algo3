@@ -1,15 +1,12 @@
 
 /**
  * Interfaz que define el comportamiento de una lista
- *
- * Esta es una clase parametrizada con tipo (clase) E; i.e., la
- * lista contiene elementos de tipo E.
- *
+ * 
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
- *
- * Proyecto 3
- * Prof Lab: Juan Arocha
+ * 
+ * Proyecto 4
+ * Prof Lab: Juan Arocha 
  *
  * @param <E> TIpo de clase que guardara la lista
  */
@@ -23,11 +20,13 @@ public interface Lista<E> {
 	public boolean add(E element);
 
 	/**
-	 *  Retorna el primer de la lista.
 	 * @return el primer elemento de la lista
 	 */
 	public E get();
-	
+
+	/**
+	 * @return el ultimo elemento de la lista
+	 */
 	public E getLast();
 
 	/**
@@ -70,6 +69,10 @@ public interface Lista<E> {
 	 * @return Arreglo de elementos
 	 */
 	public Object[] toArray();
-	
+
+	/**
+	 * Elimina todos los elementos de la lista
+	 * esta queda como recien creada
+	 */
 	public void clear();
 }
