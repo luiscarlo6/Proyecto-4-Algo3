@@ -78,7 +78,7 @@ public class DiGraphHash implements Graph {
 		Nodo dst = new Nodo(a.getDst());
 		int posSrc = this.pos(src);
 		int posDst = this.pos(dst);
-		Arco Aux = null;
+//		Arco Aux = null;
 
 		if (posSrc == -1 || posDst == -1) {
 			return false;
@@ -104,17 +104,21 @@ public class DiGraphHash implements Graph {
 				if (as) {
 					out.add(a);
 					in.add(a);
+					src = this.get(src);
+					dst = this.get(dst);
+					src.setOutDegree(src.getOutDegree()+1);
+					dst.setInDegree(dst.getInDegree()+1);
 					this.numArcos++;
 					return true;
 				}
-				Aux = this.get(a);
-
-				if (Aux == null) {
-					out.add(a);
-					in.add(a);
-					this.numArcos++;
-					return true;
-				}
+//				Aux = this.get(a);
+//
+//				if (Aux == null) {
+//					out.add(a);
+//					in.add(a);
+//					this.numArcos++;
+//					return true;
+//				}
 				return false;
 			}
 		}
@@ -287,6 +291,10 @@ public class DiGraphHash implements Graph {
 			// remuevo de las listas
 			boolean quitado = out.remove(a) && in.remove(a);
 			if (quitado) {
+				src = this.get(src);
+				dst = this.get(dst);
+				src.setOutDegree(src.getOutDegree()-1);
+				dst.setInDegree(dst.getInDegree()-1);
 				this.numArcos--;
 			}
 			return quitado;

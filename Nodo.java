@@ -50,6 +50,9 @@ public class Nodo implements Comparable<Nodo> {
 	@Override
 	protected Object clone() {
 		Nodo sal = new Nodo(new String(this.id), this.peso);
+		sal.setInDegree(this.inArcos);
+		sal.setOutDegree(this.outArcos);
+		sal.setVisitado(this.visitado);
 		return sal;
 	}
 
@@ -59,7 +62,7 @@ public class Nodo implements Comparable<Nodo> {
 	@Override
 	public String toString() {
 
-		return new String(new String(this.id +"\t"+ this.peso));
+		return new String(new String(this.id));
 	}
 
 	/**

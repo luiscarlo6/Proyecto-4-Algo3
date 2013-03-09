@@ -17,15 +17,17 @@ public class Main {
 		int Filas = -1;
 		int Columnas = -1;
 
-		// Object[] ListaNodo=null;
-		Lista<Nodo> Lista;
-
 		try {
 			if (args.length == 2) {
+				Topologico topo = new Topologico(); 
+				Pila<Nodo> pila;
+
+				archivoOut = new FileWriter(args[1]);
+				pw = new PrintWriter(archivoOut);
+
 				archivoIn = new File(args[0]);
 				s = new Scanner(archivoIn);
 				int numCasos = s.nextInt();
-				System.out.println(numCasos);
 				i = 0;
 				while (i != numCasos) {
 					if (s.hasNextInt())
@@ -33,27 +35,25 @@ public class Main {
 					if (s.hasNextInt())
 						Filas = s.nextInt();
 
-					System.out.println(Filas);
-					System.out.println(Columnas);
-
 					grafo = Llenar(s, Filas, Columnas);
-					System.out.println(grafo.toString());
-					System.out.println("\n\n\n\n");
 
-					Lista = grafo.getNodos();
-					ListIterator<Nodo> Rec = ((MiLista<Nodo>) Lista).iterator();
+					pila = topo.TopoSort(grafo);
 
-					for (int u = 0; u != Lista.getSize(); u++) {
-						int[] Pos = null;
-						Nodo nodo = Rec.next();
+					int matriz[][] = matriz(grafo,pila,Filas,Columnas);
 
-						Pos = PosicionMatriz(nodo.getId());
-						System.out.println(nodo.getId() + "\t" + Pos[1] + "\t"
-								+ Pos[0]);
+					for (int f = 0; f!=matriz.length;f++){
+
+						for (int c = 0; c!=matriz[f].length;c++){
+							pw.print(matriz[f][c]);
+							pw.print(" ");
+						}
+						pw.println();
 					}
-
 					i++;
 				}
+				pw.close();
+				s.close();
+				archivoOut.close();
 
 			} else {
 				System.out.println("Error en la linea de argumentos");
@@ -133,8 +133,6 @@ public class Main {
 			}// fin de for de i
 
 		}// fin de for de j
-
-		System.out.println();
 		return G;
 
 	}
@@ -230,11 +228,39 @@ public class Main {
 		default:
 			break;
 		}
-
-		// System.out.println(Pos[1]);
-		// System.out.println(Pos[0]);
 		return Pos;
 
+	}
+
+	private static int[][] matriz(Graph grafo, Pila<Nodo> pila, int filas, int columnas){
+		int matriz[][] = new int[filas][columnas];
+
+		while (!pila.esVacia()){
+			Nodo n = pila.primero();
+			pila.desempilar();
+
+			if (n.getPeso()==Integer.MAX_VALUE){
+
+				MiLista<Nodo> ady =(MiLista<Nodo>) grafo.getSuc(n);			
+				ListIterator<Nodo> it = ady.iterator();
+
+				int j = 0;
+				int peso = 0;
+				while (j!=ady.getSize()){
+					Nodo a = it.next();
+					a = grafo.get(a);
+					peso = peso + a.getPeso();
+					j++;
+				}
+				n.setPeso(peso);
+			}
+
+			int pos[] = PosicionMatriz(n.getId());
+			matriz[pos[1]][pos[0]] = n.getPeso();
+		}
+
+
+		return matriz;
 	}
 
 }// fin de clase Main
