@@ -1,174 +1,168 @@
 /**
  * Clase que almacena la informacion de las aristas en el grafo.
- * 
+ *
  * Luiscarlo Rivera, 09-11020
  * Jose Prado, 09-11006
- * 
+ *
  * Proyecto 4
- * Prof Lab: Juan Arocha 
+ * Prof Lab: Juan Arocha
  *
  */
 public class Nodo implements Comparable<Nodo> {
 
-	private String id = null;
-	private int peso = Integer.MAX_VALUE;
-	private boolean visitado = false;
-	private int inArcos = 0;
-	private int outArcos = 0;
+    private String id = null;
+    private int peso = Integer.MAX_VALUE;
+    private boolean visitado = false;
+    private int inArcos = 0;
+    private int outArcos = 0;
 
-	/**
-	 * Constructor por defecto
-	 **/
-	public Nodo() {
-		this.id = "";
-		this.peso = Integer.MAX_VALUE;
-	}
+    /**
+     * Constructor por defecto
+     **/
+    public Nodo() {
+        this.id = "";
+        this.peso = Integer.MAX_VALUE;
+    }
 
-	/**
-	 * Crea un nodo con id i.
-	 * @param i id del nodo
-	 */
-	public Nodo(String i) {
-		this.id = new String(i);
-		this.peso = Integer.MAX_VALUE;
+    /**
+     * Crea un nodo con id i.
+     * @param i id del nodo
+     */
+    public Nodo(String i) {
+        this.id = new String(i);
+        this.peso = Integer.MAX_VALUE;
+    }
 
-	}
+    /**
+     * Crea un nodo con id i y peso p
+     * @param i id del nodo
+     * @param p peso del nodo
+     */
+    public Nodo(String i, int p) {
+        this.id = new String(i);
+        this.peso = p;
+    }
 
-	/**
-	 * Crea un nodo con id i y peso p
-	 * @param i id del nodo
-	 * @param p peso del nodo
-	 */
-	public Nodo(String i, int p) {
-		this.id = new String(i);
-		this.peso = p;
+    /**
+     * Retorna un nuevo nodo que es copia de this.
+     */
+    @Override
+    protected Object clone() {
+        Nodo sal = new Nodo(new String(this.id), this.peso);
+        sal.setInDegree(this.inArcos);
+        sal.setOutDegree(this.outArcos);
+        sal.setVisitado(this.visitado);
+        return sal;
+    }
 
-	}
+    /**
+     * Retorna la representacion en String del nodo.
+     */
+    @Override
+    public String toString() {
+        return new String(new String(this.id));
+    }
 
-	/**
-	 * Retorna un nuevo nodo que es copia de this.
-	 */
-	@Override
-	protected Object clone() {
-		Nodo sal = new Nodo(new String(this.id), this.peso);
-		sal.setInDegree(this.inArcos);
-		sal.setOutDegree(this.outArcos);
-		sal.setVisitado(this.visitado);
-		return sal;
-	}
+    /**
+     * Indica si el nodo de entrada es igual a this.
+     */
+    @Override
+    public boolean equals(Object o) {
+        Nodo n;
 
-	/**
-	 * Retorna la representacion en String del nodo.
-	 */
-	@Override
-	public String toString() {
-		return new String(new String(this.id));
-	}
+        if (o == null) {
+            return false;
+        }
 
-	/**
-	 * Indica si el nodo de entrada es igual a this.
-	 */
-	@Override
-	public boolean equals(Object o) {
-		Nodo n;
+        if (!(o instanceof Nodo)) {
+            return false;
+        }
 
-		if (o == null) {
-			return false;
-		}
+        n = (Nodo) o;
 
-		if (!(o instanceof Nodo)) {
-			return false;
-		}
+        if (this.id.equalsIgnoreCase(n.id)) {
+            return true;
+        }
 
-		n = (Nodo) o;
+        return false;
+    }
 
-		if (this.id.equalsIgnoreCase(n.id)) {
-			return true;
-		}
+    /**
+     * reemplaza la condicion de visitado
+     * @param v estado de visita para el nodo
+     */
+    public void setVisitado(boolean v) {
+        this.visitado = v;
+    }
 
-		return false;
-	}
+    /**
+     * retorna el status de visitado
+     * @return el estado de visita del nodo
+     */
+    public boolean getVisitado() {
+        return this.visitado;
+    }
 
-	/**
-	 * reemplaza la condicion de visitado
-	 * @param v estado de visita para el nodo
-	 */
-	public void setVisitado(boolean v) {
-		this.visitado = v;
-	}
+    /**
+     * retorna el peso del nodo
+     * @return peso del nodo
+     */
+    public int getPeso() {
+        return this.peso;
+    }
 
-	/**
-	 * retorna el status de visitado
-	 * @return el estado de visita del nodo
-	 */
-	public boolean getVisitado() {
-		return this.visitado;
-	}
+    /**
+     * reemplaza el peso del nodo
+     * @param a Peso del Nodo
+     */
+    public void setPeso(int a) {
+        this.peso = a;
+    }
 
-	/**
-	 * retorna el peso del nodo
-	 * @return peso del nodo
-	 */
-	public int getPeso() {
-		return this.peso;
-	}
+    /**
+     * @return el numero de arcos entrando al nodo
+     */
+    public int getInDegree() {
+        return this.inArcos;
+    }
 
-	/**
-	 * reemplaza el peso del nodo
-	 * @param a Peso del Nodo
-	 */
-	public void setPeso(int a) {
+    /**
+     * @param a Numero de arcos entrando al nodo
+     */
+    public void setInDegree(int a) {
+        this.inArcos = a;
+    }
 
-		this.peso = a;
-	}
+    /**
+     * @return numero de arcos saliendo del nodo
+     */
+    public int getOutDegree() {
+        return this.outArcos;
+    }
 
+    /**
+     * @param a numero de arcos saliendo del nodo
+     */
+    public void setOutDegree(int a) {
+        this.outArcos = a;
+    }
 
-	/**
-	 * @return el numero de arcos entrando al nodo
-	 */
-	public int getInDegree() {
-		return this.inArcos;
-	}
+    /**
+     * Retorna el codigo hash para un nodo.
+     */
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
+    }
 
+    @Override
+    public int compareTo(Nodo n) {
 
-	/**
-	 * @param a Numero de arcos entrando al nodo
-	 */
-	public void setInDegree(int a) {
-		this.inArcos = a;
-	}
-
-	/**
-	 * @return numero de arcos saliendo del nodo
-	 */
-	public int getOutDegree() {
-		return this.outArcos;
-	}
-
-
-	/**
-	 * @param a numero de arcos saliendo del nodo
-	 */
-	public void setOutDegree(int a) {
-		this.outArcos = a;
-	}
-
-	/**
-	 * Retorna el codigo hash para un nodo.
-	 */
-	@Override
-	public int hashCode() {
-		return this.id.hashCode();
-	}
-
-	@Override
-	public int compareTo(Nodo n) {
-
-		if (this.inArcos == n.getInDegree()) {
-			return 0;
-		} else if (this.inArcos < n.getInDegree()) {
-			return -1;
-		}
-		return 1;
-	}
+        if (this.inArcos == n.getInDegree()) {
+            return 0;
+        } else if (this.inArcos < n.getInDegree()) {
+            return -1;
+        }
+        return 1;
+    }
 } /*Fin de nodo*/
