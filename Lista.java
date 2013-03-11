@@ -19,11 +19,6 @@ public interface Lista<E> {
     public boolean add(E element);
 
     /**
-     * @return el primer elemento de la lista
-     */
-    public E get();
-
-    /**
      * @return el ultimo elemento de la lista
      */
     public E getLast();
@@ -34,13 +29,6 @@ public interface Lista<E> {
      * @return true si contiene el elemento, false en caso contrario
      */
     public boolean contains(E element);
-
-    /**
-     * Determina si la lista dada es igual a la lista.
-     * @param list Lista a verificar
-     * @return true si las listas son iguales, false en caso contrario
-     */
-    public boolean equals(Lista<E> list);
 
     /**
      * Determina si la lista es vacia.
@@ -61,17 +49,4 @@ public interface Lista<E> {
      * @return numero de elementos de la lista
      */
     public int getSize();
-
-    /**
-     * Retorna un arreglo que contiene todos los elementos
-     * en esta lista.
-     * @return Arreglo de elementos
-     */
-    public Object[] toArray();
-
-    /**
-     * Elimina todos los elementos de la lista
-     * esta queda como recien creada
-     */
-    public void clear();
 }

@@ -10,18 +10,24 @@
  **/
 public class Arco {
 
+    /**
+     * Nodo fuente del arco
+     */
     private String src = "";
+    /**
+     * Nodo destino del arco
+     */
     private String dst = "";
 
     /**
      * Crea una arista entre los vertices src y dst.
      *
-     * @param src: id del Nodo fuente del arco
-     * @param dst: id del Nodo destino del arco
+     * @param src1 id del Nodo fuente del arco
+     * @param dst1 id del Nodo destino del arco
      **/
-    public Arco(String src, String dst) {
-        this.src = new String(src);
-        this.dst = new String(dst);
+    public Arco(String src1, String dst1) {
+        this.src = new String(src1);
+        this.dst = new String(dst1);
     }
 
     /**
@@ -80,13 +86,5 @@ public class Arco {
     @Override
     public String toString() {
         return "(" + this.src + ", " + this.dst + ")";
-    }
-
-    /**
-     * Retorna el codigo hash para un arco.
-     */
-    @Override
-    public int hashCode() {
-        return this.src.hashCode() + this.dst.hashCode();
     }
 } /* Fin de arco */

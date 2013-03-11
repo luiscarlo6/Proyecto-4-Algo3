@@ -11,6 +11,9 @@
  */
 public class BinaryHeap<E extends Comparable<E>> {
 
+    /**
+     * arreglo donde se guardan los elementos del heap
+     */
     private ArrDin<E> vector;
 
     /**
@@ -105,21 +108,5 @@ public class BinaryHeap<E extends Comparable<E>> {
             this.vector.add(padre, i);
             i = posPadre;
         }
-    }
-
-    /**
-     * Indica el numero de elementos del heap
-     * @return retorna el numero de elementos en el heap
-     */
-    public int tam() {
-        return this.vector.numElem();
-    }
-
-    /**
-     * Retorna un arreglo con los elemntos del
-     * @return retorna la representacion en arreglo del heap
-     */
-    public Object[] toArray() {
-        return this.vector.getArr();
     }
 }// fin de BinaryHeap

@@ -11,7 +11,10 @@
  */
 public class Pila<E> {
 
-    private Lista<E> lista;//Lista de elementos de la cola
+    /**
+     * Lista donde e guardan los elementos de la pila
+     */
+    private Lista<E> lista;
 
     /**
      * Constructor por defecto
@@ -51,27 +54,5 @@ public class Pila<E> {
      */
     public E primero() {
         return this.lista.getLast();
-    }
-
-    /**
-     * @return numero de elementos en la cola
-     */
-    public int tam() {
-        return this.lista.getSize();
-    }
-
-    /**
-     * retorna una representacion en String de la cola
-     */
-    @Override
-    public String toString() {
-        return this.lista.toString();
-    }
-
-    /**
-     * Vacia la cola, esta queda como recien creada
-     */
-    public void clear() {
-        this.lista.clear();
     }
 }

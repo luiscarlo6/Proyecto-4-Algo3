@@ -82,7 +82,12 @@ public class Main {
         }
     }
 
-    // funcion que llena la matriz
+    /**
+     * @param s Scanner del archivo
+     * @param Fila numero de filas en la matriz de entrada
+     * @param Columna numero de columnas en la matriz de entrada
+     * @return construccion del grafo a partir de la matriz de entrada
+     */
     private static Graph Llenar(Scanner s, int Fila, int Columna) {
 
         Graph G = null;
@@ -152,6 +157,9 @@ public class Main {
 
     /**
      * Toma el string Cont y descifra si es un numero o una formula
+     * @param G Grafo en proceso de construccion
+     * @param Nombre string de como se llamara un nodo
+     * @param Cont String de entrada
      *
      * */
     private static void Procesar(Graph G, String Nombre, String Cont) {
@@ -202,6 +210,8 @@ public class Main {
      *
      * Funcion que dado el el id del nodo, retorna la posicion que le
      * corresponde en la matriz
+     * @param Arg String en formato de "celdas"
+     * @return un arreglo con la coordenadas en la matriz que corresponden a Arg
      *
      * */
     // Pos[0] son las columnas Pos[1] son las filas
@@ -258,6 +268,13 @@ public class Main {
         return Pos;
     }
 
+    /**
+     * @param grafo grafo a partir del cual se construira la matriz
+     * @param pila Pila del orden topologico
+     * @param filas Numero de filas
+     * @param columnas Numero de Columnas
+     * @return la matriz de solo numeros para la salida
+     */
     private static int[][] matriz(Graph grafo, Pila<Nodo> pila, int filas,
             int columnas) {
         int matriz[][] = new int[filas][columnas];

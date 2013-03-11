@@ -6,13 +6,21 @@
  * Proyecto 4
  * Prof Lab: Juan Arocha
  *
- * @author Luiscarlo
  */
 public class Topologico {
 
-    private Pila<Nodo> pila;//Pila de salida
-    private BinaryHeap<Nodo> cola;//Cola de prioridades
-    private Graph grafo;//grafo al cual se aplicara el ordenamiento
+    /**
+     * Pila de salida
+     */
+    private Pila<Nodo> pila;
+    /**
+     * Cola de prioridades
+     */
+    private BinaryHeap<Nodo> cola;
+    /**
+     * grafo sobre elq ue se realizara ordenamiento topologico
+     */
+    private Graph grafo;
 
     /**
      * @param g grafo para el ordenamiento

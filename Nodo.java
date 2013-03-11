@@ -10,11 +10,22 @@
  */
 public class Nodo implements Comparable<Nodo> {
 
+    /**
+     * Nombre del nodo
+     */
     private String id = null;
+    /**
+     * Peso del nodo
+     */
     private int peso = Integer.MAX_VALUE;
+    /**
+     * Estado "Visitado" del nodo
+     */
     private boolean visitado = false;
+    /**
+     * Numero de arcos entrantes al nodo
+     */
     private int inArcos = 0;
-    private int outArcos = 0;
 
     /**
      * Constructor por defecto
@@ -50,7 +61,6 @@ public class Nodo implements Comparable<Nodo> {
     protected Object clone() {
         Nodo sal = new Nodo(new String(this.id), this.peso);
         sal.setInDegree(this.inArcos);
-        sal.setOutDegree(this.outArcos);
         sal.setVisitado(this.visitado);
         return sal;
     }
@@ -131,20 +141,6 @@ public class Nodo implements Comparable<Nodo> {
      */
     public void setInDegree(int a) {
         this.inArcos = a;
-    }
-
-    /**
-     * @return numero de arcos saliendo del nodo
-     */
-    public int getOutDegree() {
-        return this.outArcos;
-    }
-
-    /**
-     * @param a numero de arcos saliendo del nodo
-     */
-    public void setOutDegree(int a) {
-        this.outArcos = a;
     }
 
     /**
