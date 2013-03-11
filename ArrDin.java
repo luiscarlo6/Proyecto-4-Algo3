@@ -16,11 +16,11 @@ public class ArrDin<E> {
 	 */
 	private Object arr[] = null;
 	/**
-	 * tamaño anterior del arreglo
+	 * tamano anterior del arreglo
 	 */
 	private int anterior;
 	/**
-	 * tamaño actual del arreglo
+	 * tamano actual del arreglo
 	 */
 	private int actual;
 	/**
