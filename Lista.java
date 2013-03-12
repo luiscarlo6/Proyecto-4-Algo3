@@ -49,4 +49,9 @@ public interface Lista<E> {
      * @return numero de elementos de la lista
      */
     public int getSize();
+    
+    /**
+     * @return true si la lista cambia, false en caso contrario
+     */
+    public boolean removeLast();
 }

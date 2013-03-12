@@ -149,6 +149,27 @@ public class MiLista<E> implements Lista<E> {
         return new LisIter(this);
     }
 
+    public boolean removeLast(){
+
+		if (this.isEmpty()) {
+			return false;
+		}
+		Caja<E> sent = this.centinela;
+		if (this.tam==1){
+			sent.cambiarSiguiente(sent);
+			sent.cambiarAnterior(sent);
+			this.tam--;
+			return true;
+		}
+		
+		Caja<E> ant = sent.cajaAnt();
+		sent.cambiarAnterior(ant.cajaAnt());
+		ant.cajaAnt().cambiarSiguiente(sent);
+		this.tam--;
+		return true;
+
+	}
+    
     /**
      * Clase privada para el uso de la lista
      * Implementa una cada con un apuntador

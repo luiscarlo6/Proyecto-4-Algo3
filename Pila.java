@@ -44,8 +44,8 @@ public class Pila<E> {
      * @return el elemento desempilado
      */
     public E desempilar() {
-        E e = this.lista.getLast();
-        this.lista.remove(e);
+        E e = this.lista.getLast();        
+        this.lista.removeLast();
         return e;
     }
 

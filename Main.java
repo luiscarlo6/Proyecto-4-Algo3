@@ -44,7 +44,7 @@ public class Main {
                     if (s.hasNextInt()) {
                         Filas = s.nextInt();
                     }
-                    if (!(1 <= Filas && Filas <= 99 && 1 <= Columnas && Columnas <= 18278)) {
+                    if (!(1 <= Filas && Filas <= 999 && 1 <= Columnas && Columnas <= 18278)) {
                         System.out.println("El archivo no respeta el formato indicado");
                         System.exit(1);
                     }
@@ -108,6 +108,12 @@ public class Main {
         char[] Array;
 
         for (int j = 0; j >= 0 & j != Fila & Fila >= 0; j++) {
+        	
+            N1 = 0;
+            N2 = 0;
+            N3 = 0;
+            N4 = 0;
+            N5 = 0;
 
             for (int i = 0; i >= 0 & i != Columna & Columna >= 0; i++) {
 
