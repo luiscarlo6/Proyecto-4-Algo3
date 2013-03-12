@@ -226,7 +226,6 @@ public class Main {
         Pos[0] = -1;
         Pos[1] = -1;
         final char Const = 'A';
-        // final char Const1 = '0';
         int j = -1;
         String Letras = "";
         String Numeros = "";
