@@ -48,15 +48,14 @@ public class Main {
                         System.out.println("El archivo no respeta el formato indicado");
                         System.exit(1);
                     }
-
                     grafo = Llenar(s, Filas, Columnas);
-
+                    
                     Topologico topo = new Topologico(grafo);
-
+                    
                     pila = topo.TopoSort();
-
+                                        
                     int matriz[][] = matriz(grafo, pila, Filas, Columnas);
-
+                    
                     for (int f = 0; f != matriz.length; f++) {
 
                         for (int c = 0; c != matriz[f].length; c++) {

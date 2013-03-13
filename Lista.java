@@ -51,6 +51,7 @@ public interface Lista<E> {
     public int getSize();
     
     /**
+     * remueve el ultimo elemento de la lista
      * @return true si la lista cambia, false en caso contrario
      */
     public boolean removeLast();

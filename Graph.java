@@ -54,5 +54,4 @@ public interface Graph {
      * @return Nodo de salida identico a n, perteneciente al grafo
      */
     public Nodo get(Nodo n);
-
 }

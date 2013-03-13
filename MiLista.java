@@ -148,8 +148,13 @@ public class MiLista<E> implements Lista<E> {
     public ListIterator<E> iterator() {
         return new LisIter(this);
     }
-
-    public boolean removeLast(){
+    
+    /**
+     * remueve el ultimo elemento de la lista
+     * @return true si la lista cambia, false en caso contrario
+     */
+    @Override
+	public boolean removeLast(){
 
 		if (this.isEmpty()) {
 			return false;
